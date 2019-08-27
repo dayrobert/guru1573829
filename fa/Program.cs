@@ -10,10 +10,10 @@ namespace tc
     {
         static void Main(string[] args)
         {
-            const string CUSTOM_METADATA_TYPE_NAME = "something__mdt";
-            const string CUSTOM_METADATA_ITEM_NAME = "something.value_name";
-            const string FIELD_TO_UPDATE = "field name in something__mdt";
-            const string NEW_VALUE = "new value to set field too";
+            const string CUSTOM_METADATA_TYPE_NAME = "Machine_Part_Config__mdt";
+            const string CUSTOM_METADATA_ITEM_NAME = "Machine_Part_Config__mdt.Part_A";
+            const string FIELD_TO_UPDATE = "Canvas_Scale__c";
+            const string NEW_VALUE = "100";
 
             try
             {
@@ -53,12 +53,9 @@ namespace tc
                     throw new Exception("Failed to locate field to update");
 
                 // update the found item and then output the new values
-                mdt.values[1].value = "test";
+                writeCustomMetadata(serverUrl, username, password, orgId, mdt);
                 foreach (CustomMetadataValue val in mdt.values)
                     Console.WriteLine(val.field + ": " + val.value);
-
-                writeCustomMetadata(serverUrl, username, password, orgId, mdt);
-
             }
             catch (Exception x)
             {
